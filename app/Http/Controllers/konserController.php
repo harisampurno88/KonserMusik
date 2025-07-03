@@ -2,16 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\konser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class konserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $katakunci = $request->get('katakunci');
+        if (strlen($katakunci)) {
+            $data = konser::where('id_konser', 'like', "%$katakunci%")
+                ->orWhere('nama_konser', 'like', "%$katakunci%")
+                ->orWhere('tanggal', 'like', "%$katakunci%")
+                ->orWhere('id_artis', 'like', "%$katakunci%")
+                ->orWhere('id_lokasi', 'like', "%$katakunci%")
+                ->orWhere('id_promotor', 'like', "%$katakunci%")
+                ->paginate(3);
+            $data->appends(['katakunci' => $katakunci]);
+        } else {
+            $data = konser::orderBy('id_konser', 'desc')->paginate(3);
+        }
+        return view('konser.index')->with('data', $data);
     }
 
     /**
@@ -19,7 +34,7 @@ class konserController extends Controller
      */
     public function create()
     {
-        //
+        return view('konser.create');
     }
 
     /**
@@ -27,7 +42,45 @@ class konserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Session::flash('id_konser', $request->id_konser);
+        Session::flash('nama_konser', $request->nama_konser);
+        Session::flash('tanggal', $request->tanggal);
+        Session::flash('id_artis', $request->id_artis);
+        Session::flash('id_lokasi', $request->id_lokasi);
+        Session::flash('id_promotor', $request->id_promotor);
+
+        $request->validate(
+            [
+                'id_konser' => 'required|integer|unique:konser,id_konser',
+                'nama_konser' => 'required|string|max:100',
+                'tanggal' => 'required|date',
+                'id_artis' => 'required|integer|exists:artis,id_artis',
+                'id_lokasi' => 'required|integer|exists:lokasi,id_lokasi',
+                'id_promotor' => 'required|integer|exists:promotor,id_promotor',
+            ],
+            [
+                'id_konser.required' => 'ID Konser harus diisi',
+                'id_konser.integer' => 'ID Konser harus berupa angka',
+                'id_konser.unique' => 'ID Konser sudah ada',
+                'nama_konser.required' => 'Nama Konser harus diisi',
+                'nama_konser.string' => 'Nama Konser harus berupa teks',
+                'nama_konser.max' => 'Nama Konser maksimal 100 karakter',
+                'tanggal.required' => 'Tanggal harus diisi',
+                'id_artis.required' => 'ID Artis harus diisi',
+                'id_lokasi.required' => 'ID Lokasi harus diisi',
+                'id_promotor.required' => 'ID Promotor harus diisi',
+            ]
+        );
+        $data = [
+            'id_konser' => $request->id_konser,
+            'nama_konser' => $request->nama_konser,
+            'tanggal' => $request->tanggal,
+            'id_artis' => $request->id_artis,
+            'id_lokasi' => $request->id_lokasi,
+            'id_promotor' => $request->id_promotor,
+        ];
+        konser::create($data);
+        return redirect()->to('konser')->with('success', 'Data Konser berhasil disimpan');
     }
 
     /**
@@ -43,7 +96,8 @@ class konserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = konser::where('id_konser', $id)->first();
+        return view('konser.edit')->with('data', $data);
     }
 
     /**
@@ -51,7 +105,33 @@ class konserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+         $request->validate(
+            [
+                'nama_konser' => 'required|string|max:100',
+                'tanggal' => 'required|date',
+                'id_artis' => 'required|integer|exists:artis,id_artis',
+                'id_lokasi' => 'required|integer|exists:lokasi,id_lokasi',
+                'id_promotor' => 'required|integer|exists:promotor,id_promotor',
+            ],
+            [
+                'nama_konser.required' => 'Nama Konser harus diisi',
+                'nama_konser.string' => 'Nama Konser harus berupa teks',
+                'nama_konser.max' => 'Nama Konser maksimal 100 karakter',
+                'tanggal.required' => 'Tanggal harus diisi',
+                'id_artis.required' => 'ID Artis harus diisi',
+                'id_lokasi.required' => 'ID Lokasi harus diisi',
+                'id_promotor.required' => 'ID Promotor harus diisi',
+            ]
+        );
+        $data = [
+            'nama_konser' => $request->nama_konser,
+            'tanggal' => $request->tanggal,
+            'id_artis' => $request->id_artis,
+            'id_lokasi' => $request->id_lokasi,
+            'id_promotor' => $request->id_promotor,
+        ];
+        konser::where('id_konser', $id)->update($data);
+        return redirect()->to('konser')->with('success', 'Data Konser berhasil diubah');
     }
 
     /**
@@ -59,6 +139,7 @@ class konserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        konser::where('id_konser', $id)->delete();
+        return redirect()->to('konser')->with('success', 'Data Konser berhasil dihapus');
     }
 }

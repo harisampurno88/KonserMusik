@@ -60,7 +60,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="/konser" class="nav-link">
               <i class="nav-icon fas fa-solid fa-music"></i>
               <p>
                 Konser
@@ -105,6 +105,7 @@
     </aside>
 
   <div class="content-wrapper">
+      @include('alert.pesan')
       @yield('content')
   </div>
 
