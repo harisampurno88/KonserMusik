@@ -54,9 +54,9 @@ class konserController extends Controller
                 'id_konser' => 'required|integer|unique:konser,id_konser',
                 'nama_konser' => 'required|string|max:100',
                 'tanggal' => 'required|date',
-                'id_artis' => 'required|integer|exists:artis,id_artis',
-                'id_lokasi' => 'required|integer|exists:lokasi,id_lokasi',
-                'id_promotor' => 'required|integer|exists:promotor,id_promotor',
+                'id_artis' => 'required|integer',
+                'id_lokasi' => 'required|integer',
+                'id_promotor' => 'required|integer',
             ],
             [
                 'id_konser.required' => 'ID Konser harus diisi',
@@ -109,9 +109,9 @@ class konserController extends Controller
             [
                 'nama_konser' => 'required|string|max:100',
                 'tanggal' => 'required|date',
-                'id_artis' => 'required|integer|exists:artis,id_artis',
-                'id_lokasi' => 'required|integer|exists:lokasi,id_lokasi',
-                'id_promotor' => 'required|integer|exists:promotor,id_promotor',
+                'id_artis' => 'required|integer',
+                'id_lokasi' => 'required|integer',
+                'id_promotor' => 'required|integer',
             ],
             [
                 'nama_konser.required' => 'Nama Konser harus diisi',

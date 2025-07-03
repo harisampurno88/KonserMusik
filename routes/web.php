@@ -7,7 +7,7 @@ use App\Http\Controllers\konserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::get('/login', fn () => view('auth.login')) -> name('login');
