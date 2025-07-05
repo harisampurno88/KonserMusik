@@ -4,6 +4,7 @@ use App\Http\Controllers\artisController;
 use App\Http\Controllers\authController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\konserController;
+use App\Http\Controllers\lokasiController;
 use App\Http\Controllers\tiketController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,5 @@ Route::get('/dashboard', [dashboardController::class, 'index']);
 Route::resource('artis', artisController::class);
 Route::resource('konser', konserController::class);
 Route::resource('tiket', tiketController::class);
+Route::resource('lokasi', lokasiController::class);
 
