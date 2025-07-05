@@ -13,6 +13,6 @@ class promotor extends Model
     protected $fillable = [
         'id_promotor',
         'nama_promotor',
-        'kontak',
+        'email',
     ];
 }
