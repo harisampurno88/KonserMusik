@@ -92,7 +92,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="/sponsor" class="nav-link">
               <i class="nav-icon fas fa-solid fa-handshake"></i>
               <p>
                 Sponsor
