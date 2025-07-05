@@ -68,7 +68,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
+            <a href="/tiket" class="nav-link">
               <i class="nav-icon fas fa-solid fa-money-bill"></i>
               <p>
                 Tiket

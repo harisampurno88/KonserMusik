@@ -4,16 +4,18 @@ use App\Http\Controllers\artisController;
 use App\Http\Controllers\authController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\konserController;
+use App\Http\Controllers\tiketController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
 
-Route::get('/login', fn () => view('auth.login')) -> name('login');
+Route::get('/', fn () => view('auth.login')) -> name('login');
 Route::post('/login', [authController::class, 'login']);
 Route::get('/dashboard', [dashboardController::class, 'index']);
 
 Route::resource('artis', artisController::class);
 Route::resource('konser', konserController::class);
+Route::resource('tiket', tiketController::class);
 

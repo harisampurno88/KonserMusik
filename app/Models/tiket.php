@@ -13,6 +13,7 @@ class tiket extends Model
     protected $fillable = [
         'id_tiket',
         'id_konser',
+        'jenis_tiket',
         'harga',
         'stok',
     ];
