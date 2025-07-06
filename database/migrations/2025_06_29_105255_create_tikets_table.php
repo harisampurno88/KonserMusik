@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tiket', function (Blueprint $table) {
             $table->string('id_tiket')->primary();
             $table->string('id_konser');
+            $table->foreign('id_konser')->references('id_konser')->on('konser')->onDelete('cascade');
             $table->enum('jenis_tiket', ['VVIP', 'VIP', 'Reguler']);
             $table->decimal('harga', 10, 2);
             $table->integer('stok');

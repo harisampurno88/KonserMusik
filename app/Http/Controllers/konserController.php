@@ -107,7 +107,7 @@ class konserController extends Controller
         $promotorList = promotor::all();
         $data = konser::where('id_konser', $id)->first();
 
-        return view('konser.edit', compact('siswaList', 'lokasiList', 'promotorList', 'data'));
+        return view('konser.edit', compact('artisList', 'lokasiList', 'promotorList', 'data'));
     }
 
     /**
@@ -149,7 +149,13 @@ class konserController extends Controller
      */
     public function destroy(string $id)
     {
+        $konser = konser::where('id_konser', $id)->firstOrFail();
+
+        if ($konser->tiket()->exists()) {
+            return redirect()->to('konser')->with('error', 'Tidak bisa menghapus konser karena masih memiliki Tiket');
+        }
+
         konser::where('id_konser', $id)->delete();
-        return redirect()->to('konser')->with('success', 'Data Konser berhasil dihapus');
+        return redirect()->to('konser')->with('success', 'Data konser berhasil dihapus');
     }
 }

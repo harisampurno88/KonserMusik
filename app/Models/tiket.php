@@ -17,4 +17,9 @@ class tiket extends Model
         'harga',
         'stok',
     ];
+
+    public function konser()
+    {
+        return $this->belongsTo(Konser::class, 'id_konser', 'id_konser');
+    }
 }

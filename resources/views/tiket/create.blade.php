@@ -19,8 +19,17 @@
                     <div class="mb-3 row">
                         <label for="id_konser" class="col-sm-2 col-form-label">ID KONSER</label>
                         <div class="col-sm-10">
-                            <input type="number" class="form-control" name='id_konser'
-                                value="{{ Session::get('id_konser') }}" id="id_konser">
+                            <select name="id_konser" id="id_konser" class="form-select">
+                                <option value="">-- Pilih konser --</option>
+                                @forelse ($konserList as $konser)
+                                    <option value="{{ $konser->id_konser }}"
+                                        {{ (old('id_konser') ?? (Session::get('id_konser') ?? '')) == $konser->id_konser ? 'selected' : '' }}>
+                                        {{ $konser->id_konser }}
+                                    </option>
+                                @empty
+                                    <option disabled>Data konser belum tersedia</option>
+                                @endforelse
+                            </select>
                         </div>
                     </div>
                     <div class="mb-3 row">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\konser;
 use App\Models\tiket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -33,7 +34,8 @@ class tiketController extends Controller
      */
     public function create()
     {
-        return view('tiket.create');
+        $konserList = konser::all();
+        return view('tiket.create', compact('konserList'));
     }
 
     /**
@@ -90,8 +92,10 @@ class tiketController extends Controller
      */
     public function edit(string $id)
     {
+        $konserList = konser::all();
         $data = tiket::where('id_tiket', $id)->first();
-        return view('tiket.edit')->with('data', $data);
+
+        return view('tiket.edit', compact('konserList', 'data'));
     }
 
     /**

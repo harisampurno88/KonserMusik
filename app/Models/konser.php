@@ -33,4 +33,9 @@ class konser extends Model
     {
         return $this->belongsTo(promotor::class, 'id_promotor', 'id_promotor');
     }
+
+    public function tiket()
+    {
+        return $this->hasMany(tiket::class, 'id_konser', 'id_konser');
+    }
 }
