@@ -16,4 +16,9 @@ class sponsor extends Model
         'id_konser',
         'deskripsi',
     ];
+
+    public function konser()
+    {
+        return $this->belongsTo(konser::class, 'id_konser', 'id_konser');
+    }
 }

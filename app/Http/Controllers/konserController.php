@@ -155,6 +155,10 @@ class konserController extends Controller
             return redirect()->to('konser')->with('error', 'Tidak bisa menghapus konser karena masih memiliki Tiket');
         }
 
+        if ($konser->sponsor()->exists()) {
+            return redirect()->to('konser')->with('error', 'Tidak bisa menghapus konser karena masih memiliki Sponsor');
+        }
+
         konser::where('id_konser', $id)->delete();
         return redirect()->to('konser')->with('success', 'Data konser berhasil dihapus');
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\konser;
 use App\Models\sponsor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -32,7 +33,8 @@ class sponsorController extends Controller
      */
     public function create()
     {
-        return view('sponsor.create');
+        $konserList = konser::all();
+        return view('sponsor.create', compact('konserList'));
     }
 
     /**
@@ -89,8 +91,9 @@ class sponsorController extends Controller
      */
     public function edit(string $id)
     {
-        $data = sponsor::where('id_sponsor', $id)->first();
-        return view('sponsor.edit')->with('data', $data);
+       $konserList = konser::all();
+       $data = sponsor::where('id_sponsor', $id)->first();
+       return view('sponsor.edit', compact('konserList', 'data'));
     }
 
     /**

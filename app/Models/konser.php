@@ -38,4 +38,9 @@ class konser extends Model
     {
         return $this->hasMany(tiket::class, 'id_konser', 'id_konser');
     }
+
+    public function sponsor()
+    {
+        return $this->hasMany(sponsor::class, 'id_konser', 'id_konser');
+    }
 }

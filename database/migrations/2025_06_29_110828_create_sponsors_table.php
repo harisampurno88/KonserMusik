@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('id_sponsor')->primary();
             $table->string('nama_sponsor');
             $table->string('id_konser');
+            $table->foreign('id_konser')->references('id_konser')->on('konser')->onDelete('cascade');
             $table->text('deskripsi')->nullable();
         });
     }
