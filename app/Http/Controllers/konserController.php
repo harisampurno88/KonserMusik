@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\artis;
 use App\Models\konser;
+use App\Models\lokasi;
+use App\Models\promotor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -34,7 +37,10 @@ class konserController extends Controller
      */
     public function create()
     {
-        return view('konser.create');
+        $artisList = artis::all();
+        $lokasiList = lokasi::all();
+        $promotorList = promotor::all();
+        return view('konser.create', compact('artisList', 'lokasiList', 'promotorList'));
     }
 
     /**
@@ -96,8 +102,12 @@ class konserController extends Controller
      */
     public function edit(string $id)
     {
+        $artisList = artis::all();
+        $lokasiList = lokasi::all();
+        $promotorList = promotor::all();
         $data = konser::where('id_konser', $id)->first();
-        return view('konser.edit')->with('data', $data);
+
+        return view('konser.edit', compact('siswaList', 'lokasiList', 'promotorList', 'data'));
     }
 
     /**
@@ -105,7 +115,7 @@ class konserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-         $request->validate(
+        $request->validate(
             [
                 'nama_konser' => 'required|string|max:100',
                 'tanggal' => 'required|date',

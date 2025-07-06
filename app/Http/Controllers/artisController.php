@@ -117,6 +117,12 @@ class artisController extends Controller
      */
     public function destroy(string $id)
     {
+        $artis = artis::where('id_artis', $id)->firstOrFail();
+
+        if ($artis->konser()->exists()) {
+            return redirect()->to('artis')->with('error', 'Tidak bisa menghapus Artis karena masih memiliki Konser');
+        }
+
         artis::where('id_artis', $id)->delete();
         return redirect()->to('artis')->with('success', 'Data Artis berhasil dihapus');
     }

@@ -119,6 +119,12 @@ class promotorController extends Controller
      */
     public function destroy(string $id)
     {
+        $promotor = promotor::where('id_promotor', $id)->firstOrFail();
+
+        if ($promotor->konser()->exists()) {
+            return redirect()->to('promotor')->with('error', 'Tidak bisa menghapus promotor karena masih memiliki konser');
+        }
+
         promotor::where('id_promotor', $id)->delete();
         return redirect()->to('promotor')->with('success', 'Data promotor berhasil dihapus');
     }

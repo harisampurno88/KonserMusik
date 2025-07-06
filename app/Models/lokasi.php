@@ -15,4 +15,9 @@ class lokasi extends Model
         'nama_lokasi',
         'alamat',
     ];
+
+    public function konser()
+    {
+        return $this->hasMany(konser::class, 'id_lokasi', 'id_lokasi');
+    }
 }

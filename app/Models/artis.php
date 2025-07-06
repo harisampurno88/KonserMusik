@@ -15,4 +15,9 @@ class artis extends Model
         'nama_artis',
         'genre',
     ];
+
+    public function konser()
+    {
+        return $this->hasMany(konser::class, 'id_artis', 'id_artis');
+    }
 }

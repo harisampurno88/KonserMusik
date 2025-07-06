@@ -119,7 +119,13 @@ class lokasiController extends Controller
      */
     public function destroy(string $id)
     {
+        $lokasi = lokasi::where('id_lokasi', $id)->firstOrFail();
+
+        if ($lokasi->konser()->exists()) {
+            return redirect()->to('lokasi')->with('error', 'Tidak bisa menghapus lokasi karena masih memiliki Konser');
+        }
+
         lokasi::where('id_lokasi', $id)->delete();
-        return redirect()->to('lokasi')->with('success', 'Data Lokasi berhasil dihapus');
+        return redirect()->to('lokasi')->with('success', 'Data lokasi berhasil dihapus');
     }
 }

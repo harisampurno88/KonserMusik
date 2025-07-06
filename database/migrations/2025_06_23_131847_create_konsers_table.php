@@ -16,8 +16,11 @@ return new class extends Migration
             $table->string('nama_konser');
             $table->date('tanggal');
             $table->string('id_artis');
+            $table->foreign('id_artis')->references('id_artis')->on('artis')->onDelete('cascade');
             $table->string('id_lokasi');
+            $table->foreign('id_lokasi')->references('id_lokasi')->on('lokasi')->onDelete('cascade');
             $table->string('id_promotor');
+            $table->foreign('id_promotor')->references('id_promotor')->on('promotor')->onDelete('cascade');
         });
     }
 

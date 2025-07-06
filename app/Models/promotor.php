@@ -15,4 +15,9 @@ class promotor extends Model
         'nama_promotor',
         'email',
     ];
+    
+    public function konser()
+    {
+        return $this->hasMany(konser::class, 'id_promotor', 'id_promotor');
+    }
 }
