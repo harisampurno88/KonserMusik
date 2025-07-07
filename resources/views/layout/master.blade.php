@@ -44,7 +44,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="/dashboard" class="nav-link">
+            <a href="/dashboard" class="nav-link {{ (request()->is('dashboard')) ? 'active' : '' }} ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -52,7 +52,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/artis" class="nav-link">
+            <a href="/artis" class="nav-link {{ (request()->is('artis')) ? 'active' : '' }} ">
               <i class="nav-icon fas fa-solid fa-star"></i>
               <p>
                 Artis
@@ -60,7 +60,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/konser" class="nav-link">
+            <a href="/konser" class="nav-link {{ (request()->is('konser')) ? 'active' : '' }} ">
               <i class="nav-icon fas fa-solid fa-music"></i>
               <p>
                 Konser
@@ -68,7 +68,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/tiket" class="nav-link">
+            <a href="/tiket" class="nav-link {{ (request()->is('tiket')) ? 'active' : '' }} ">
               <i class="nav-icon fas fa-solid fa-money-bill"></i>
               <p>
                 Tiket
@@ -76,7 +76,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/lokasi" class="nav-link">
+            <a href="/lokasi" class="nav-link {{ (request()->is('lokasi')) ? 'active' : '' }} ">
               <i class="nav-icon fas fa-solid fa-location-arrow"></i>
               <p>
                 Lokasi
@@ -84,7 +84,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/promotor" class="nav-link">
+            <a href="/promotor" class="nav-link {{ (request()->is('promotor')) ? 'active' : '' }} ">
               <i class="nav-icon fas fa-solid fa-users"></i>
               <p>
                 Promotor
@@ -92,10 +92,18 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/sponsor" class="nav-link">
+            <a href="/sponsor" class="nav-link {{ (request()->is('sponsor')) ? 'active' : '' }} ">
               <i class="nav-icon fas fa-solid fa-handshake"></i>
               <p>
                 Sponsor
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/logout" class="nav-link">
+              <i class="nav-icon fas fas fa-power-off"></i>
+              <p>
+                Logout
               </p>
             </a>
           </li>

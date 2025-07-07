@@ -19,4 +19,10 @@ class authController extends Controller
         }
         return back()->with('failed', 'Email atau password salah');
     }
+
+    public function logout()
+    {
+        Auth::logout(Auth::user());
+        return redirect('/login')->with('success', 'Berhasil keluar');
+    }
 }

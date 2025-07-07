@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 //     return view('auth.login');
 // });
 
-Route::get('/', fn () => view('auth.login')) -> name('login');
+Route::get('/login', fn () => view('auth.login')) -> name('login');
 Route::post('/login', [authController::class, 'login']);
-Route::get('/dashboard', [dashboardController::class, 'index']);
+Route::get('/logout', [authController::class, 'logout']);
+Route::get('/dashboard', [dashboardController::class, 'index'])->middleware('auth');
 
 Route::resource('artis', artisController::class);
 Route::resource('konser', konserController::class);
@@ -24,4 +25,5 @@ Route::resource('tiket', tiketController::class);
 Route::resource('lokasi', lokasiController::class);
 Route::resource('promotor', promotorController::class);
 Route::resource('sponsor', sponsorController::class);
+
 
