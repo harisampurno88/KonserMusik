@@ -16,8 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', fn () => view('auth.login')) -> name('login');
 Route::post('/login', [authController::class, 'login']);
+Route::group(['middleware' => ['auth', 'check_role:admin']], function () {
+    Route::get('/dashboard', [dashboardController::class, 'index']);
+});
+Route::group(['middleware' => ['auth', 'check_role:user']], function () {
+    Route::get('/user', fn () => view('user.index')) -> name('user');
+});
 Route::get('/logout', [authController::class, 'logout']);
-Route::get('/dashboard', [dashboardController::class, 'index'])->middleware('auth');
 
 Route::resource('artis', artisController::class);
 Route::resource('konser', konserController::class);
