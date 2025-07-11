@@ -24,31 +24,31 @@
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-info">
                         <div class="inner">
-                            <h3>4</h3>
+                            <h3>{{ $jumlahKonser }}</h3>
                             <p>Konser Tersedia</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('konser.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-success">
                         <div class="inner">
-                            <h3>53</h3>
+                            <h3>{{ $jumlahTiket }}</h3>
                             <p>Tiket Tersedia</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
+                            <i class="ion ion-cash"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="{{ route('tiket.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>1</h3>
+                            <h3>{{ $jumlahUser }}</h3>
                             <p>Jumlah Pengguna</p>
                         </div>
                         <div class="icon">
@@ -69,10 +69,54 @@
                         <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-            </div>
-            <div class="img">
-                <img src="{{ asset('admin-lte/dist/img/background-music.jpg') }}" alt="background-music" class="img-fluid"
-                    width="100%">
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>{{ $jumlahLokasi }}</h3>
+                            <p>Jumlah Lokasi</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-navigate"></i>
+                        </div>
+                        <a href="{{ route('lokasi.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>{{ $jumlahArtis }}</h3>
+                            <p>Jumlah Artis</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-star"></i>
+                        </div>
+                        <a href="{{ route('artis.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>{{ $jumlahSponsor }}</h3>
+                            <p>Jumlah Sponsor</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-stalker"></i>
+                        </div>
+                        <a href="{{ route('sponsor.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>{{ $jumlahPromotor }}</h3>
+                            <p>Jumlah Promotor</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person"></i>
+                        </div>
+                        <a href="{{ route('promotor.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
