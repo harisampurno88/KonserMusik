@@ -43,4 +43,10 @@ class konser extends Model
     {
         return $this->hasMany(sponsor::class, 'id_konser', 'id_konser');
     }
+
+    public function transaksi()
+    {
+        return $this->hasMany(transaksi::class, 'id_konser', 'id_konser');
+    }
+
 }

@@ -47,4 +47,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    /**
+     * Get the transactions associated with the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function transaksi()
+    {
+        return $this->hasMany(transaksi::class, 'user_id', 'id');
+        }
+
 }
