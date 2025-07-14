@@ -100,6 +100,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="/transaksi" class="nav-link {{ (request()->is('transaksi')) ? 'active' : '' }}  ">
+              <i class="nav-icon fas fa-solid fa-cart-plus"></i>
+              <p>
+                Transaksi
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="/logout" class="nav-link">
               <i class="nav-icon fas fas fa-power-off"></i>
               <p>

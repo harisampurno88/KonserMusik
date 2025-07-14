@@ -20,6 +20,14 @@ Route::get('/login', fn () => view('auth.login')) -> name('login');
 Route::post('/login', [authController::class, 'login']);
 Route::group(['middleware' => ['auth', 'check_role:admin']], function () {
     Route::get('/dashboard', [dashboardController::class, 'index']);
+    Route::resource('artis', artisController::class);
+    Route::resource('konser', konserController::class);
+    Route::resource('tiket', tiketController::class);
+    Route::resource('lokasi', lokasiController::class);
+    Route::resource('promotor', promotorController::class);
+    Route::resource('sponsor', sponsorController::class);
+
+    Route::get('/transaksi', [transaksiController::class, 'indexAdmin'])->name('transaksi.index');
 });
 Route::group(['middleware' => ['auth', 'check_role:user']], function () {
     Route::get('/user', [UserController::class, 'index']);
@@ -29,12 +37,6 @@ Route::group(['middleware' => ['auth', 'check_role:user']], function () {
 });
 Route::get('/logout', [authController::class, 'logout']);
 
-Route::resource('artis', artisController::class);
-Route::resource('konser', konserController::class);
-Route::resource('tiket', tiketController::class);
-Route::resource('lokasi', lokasiController::class);
-Route::resource('promotor', promotorController::class);
-Route::resource('sponsor', sponsorController::class);
 
 
 

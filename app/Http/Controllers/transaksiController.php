@@ -120,4 +120,19 @@ class TransaksiController extends Controller
         // Kirim objek transaksi ke view
         return view('transaksi.show', compact('transaksi'));
     }
+
+    /**
+     * Menampilkan daftar transaksi untuk halaman admin.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function indexAdmin()
+    {
+        $transaksis = Transaksi::with(['user', 'tiket.konser']) // Eager load relationships
+                                ->latest()
+                                ->paginate(3); // Mengambil semua transaksi, diurutkan dari yang terbaru
+
+        // Kirim data transaksi ke view
+        return view('transaksi.index', compact('transaksis'));
+    }
 }

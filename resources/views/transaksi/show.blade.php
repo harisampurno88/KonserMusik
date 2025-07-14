@@ -131,7 +131,7 @@
                             background-image: url('{{ asset('customer/assets/img/gambar-tiket.png') }}'); {{-- ***GANTI DENGAN PATH GAMBAR VERTIKAL ASLI KAMU*** --}}
                             background-size: cover;
                             background-position: center;
-                            height: 420px; /* ***SESUAIKAN TINGGI INI*** (Coba 250px atau 280px) */
+                            height: 427px; /* ***SESUAIKAN TINGGI INI*** (Coba 250px atau 280px) */
                             border-top-left-radius: 15px;
                             border-bottom-left-radius: 15px;
                         ">
@@ -141,11 +141,11 @@
                         {{-- Bagian Kanan: Detail Tiket --}}
                         <div class="col-md-8 ticket-details-section">
                             <div class="card-body text-start">
-                                <h5 class="mb-3 text-center text-md-start text-muted">Detail Pemesanan Anda</h5>
-                                <hr class="my-3">
+                                <h5 class="mb-2 text-center text-md-start text-muted">Detail Pemesanan Anda</h5>
+                                <hr class="my-2">
 
                                 <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h4 class="mb-0 text-primary fw-bold">{{ $transaksi->konser->name }}</h4>
+                                    <h4 class="mb-0 text-primary fw-bold">{{ $transaksi->konser->nama_konser }}</h4>
                                     <span class="badge bg-info text-dark py-1 px-2 rounded-pill">{{ ucfirst($transaksi->status_transaksi) }}</span>
                                 </div>
                                 <h6 class="text-muted mb-3">#ID Pemesanan: {{ $transaksi->id }}</h6>
@@ -153,7 +153,7 @@
                                 <div class="row">
                                     <div class="col-6 mb-2">
                                         <p class="mb-0 text-muted"><small>Jenis Tiket</small></p>
-                                        <p class="fw-bold">{{ $transaksi->tiket->name }}</p>
+                                        <p class="fw-bold">{{ $transaksi->tiket->jenis_tiket }}</p>
                                     </div>
                                     <div class="col-6 mb-2">
                                         <p class="mb-0 text-muted"><small>Tanggal Pemesanan</small></p>

@@ -8,6 +8,7 @@ use App\Models\lokasi;
 use App\Models\promotor;
 use App\Models\sponsor;
 use App\Models\tiket;
+use App\Models\transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,7 @@ class dashboardController extends Controller
         $jumlahSponsor = sponsor::count();
         $jumlahTiket = tiket::count(); 
         $jumlahUser = User::count();
-
+        $jumlahTransaksi = transaksi::count();
         // Teruskan data ini ke view
         return view('dashboard', [ 
             'jumlahKonser' => $jumlahKonser,
@@ -33,6 +34,7 @@ class dashboardController extends Controller
             'jumlahSponsor' => $jumlahSponsor,
             'jumlahTiket' => $jumlahTiket,
             'jumlahUser' => $jumlahUser, 
+            'jumlahTransaksi' => $jumlahTransaksi,
         ]);
     }
 }
