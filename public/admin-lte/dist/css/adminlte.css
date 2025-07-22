@@ -10,7 +10,7 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-:root {
+:bg-ifno {
   --blue: #007bff;
   --indigo: #6610f2;
   --purple: #6f42c1;
@@ -10641,7 +10641,9 @@ a.text-dark:hover, a.text-dark:focus {
   --danger: #e74c3c;
   --light: #f8f9fa;
   --dark: #343a40;
+  --info: #e67514;
 }
+
 
 .animation__shake {
   -webkit-animation: shake 1500ms;
@@ -29309,7 +29311,7 @@ html.maximized-card {
 
 .dark-mode .card-info:not(.card-outline) > .card-header,
 .dark-mode .card-info:not(.card-outline) > .card-header a {
-  color: #fff;
+  color: #ffffff;
 }
 
 .dark-mode .card-info:not(.card-outline) > .card-header a.active {

@@ -24,7 +24,7 @@
                                 @forelse ($konserList as $konser)
                                     <option value="{{ $konser->id_konser }}"
                                         {{ (old('id_konser') ?? (Session::get('id_konser') ?? '')) == $konser->id_konser ? 'selected' : '' }}>
-                                        {{ $konser->id_konser }}
+                                        {{ $konser->id_konser }} - {{ $konser->nama_konser }}
                                     </option>
                                 @empty
                                     <option disabled>Data konser belum tersedia</option>

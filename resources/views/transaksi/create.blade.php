@@ -21,7 +21,7 @@
                         <option value="">-- Pilih Konser --</option>
                         @foreach($konserList as $konser)
                             <option value="{{ $konser->id_konser }}" {{ old('id_konser') == $konser->id_konser ? 'selected' : '' }}>
-                                {{ $konser->nama_konser }}
+                                {{ $konser->nama_konser }} - {{ \Carbon\Carbon::parse($konser->tanggal)->translatedFormat('d F Y')  }}
                             </option>
                         @endforeach
                     </select>

@@ -13,7 +13,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
-//     return view('auth.login');
+//     return view('utama');
 // });
 
 Route::get('/login', fn () => view('auth.login')) -> name('login');

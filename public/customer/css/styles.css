@@ -10833,6 +10833,11 @@ html {
 body {
   width: 100%;
   height: 100%;
+  background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/background-music.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover; /* Untuk kompatibilitas browser lama */
+  -moz-background-size: cover;    /* Untuk kompatibilitas browser lama */
+  -o-background-size: cover;     /* Untuk kompatibilitas browser lama */
+  background-size: cover;        
 }
 
 .page-section {
@@ -10929,11 +10934,11 @@ hr.divider-light {
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 4.5rem);
-  background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/background-music.jpg") no-repeat center center fixed;
+  /* background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/background-music.jpg") no-repeat center center fixed;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-size: cover;
+  background-attachment: fixed;
+  background-size: cover; */
 }
 header.masthead h1, header.masthead .h1 {
   font-size: 2.25rem;

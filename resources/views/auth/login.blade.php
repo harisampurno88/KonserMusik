@@ -13,15 +13,20 @@
   <link rel="stylesheet" href="{{ asset('admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('admin-lte/dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('public/css/login-custom.css') }}">
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page"
+style="background-color: #DCC5B2;}}'); 
+             background-size: cover; 
+             background-position: center center; 
+             background-repeat: no-repeat;>
 <div class="login-box">
   <div class="login-logo">
-    <a href="{{ asset('admin-lte/index2.html')}}"><b>Admin</b></a>
+    <a href="{{ asset('admin-lte/index2.html')}}"><b>Login</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
-    <div class="card-body login-card-body">
+    <div class="card-body login-card-body" style="background-color: #FAF7F3;">
 
       @if (session('failed'))
           <div class="alert alert-danger">{{ session('failed') }}</div>

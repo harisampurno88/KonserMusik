@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#" style="color: #000000; !important;">Home</a></li>
                     </ol>
                 </div>
             </div>
@@ -22,7 +22,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3 col-6">
-                    <div class="small-box bg-info">
+                    <div class="small-box bg-info" style="background-color: #a86523 !important;">
                         <div class="inner">
                             <h3>{{ $jumlahKonser }}</h3>
                             <p>Konser Tersedia</p>
@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
-                    <div class="small-box bg-success">
+                    <div class="small-box bg-success" style="background-color: #bf9264 !important;">
                         <div class="inner">
                             <h3>{{ $jumlahTiket }}</h3>
                             <p>Tiket Tersedia</p>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
-                    <div class="small-box bg-warning">
+                    <div class="small-box bg-warning" style="background-color: #fad59a !important;">
                         <div class="inner">
                             <h3>{{ $jumlahUser }}</h3>
                             <p>Jumlah Pengguna</p>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
-                    <div class="small-box bg-danger">
+                    <div class="small-box bg-warning" style="background-color: #fcefcb !important;">
                         <div class="inner">
                             <h3>{{ $jumlahTransaksi }}</h3>
                             <p>Jumlah Transaksi</p>
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
-                    <div class="small-box bg-danger">
+                    <div class="small-box bg-warning" style="background-color: #fcefcb !important;">
                         <div class="inner">
                             <h3>{{ $jumlahLokasi }}</h3>
                             <p>Jumlah Lokasi</p>
@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
-                    <div class="small-box bg-warning">
+                    <div class="small-box bg-warning" style="background-color: #fad59a !important;">
                         <div class="inner">
                             <h3>{{ $jumlahArtis }}</h3>
                             <p>Jumlah Artis</p>
@@ -94,7 +94,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
-                    <div class="small-box bg-success">
+                    <div class="small-box bg-info" style="background-color: #bf9264 !important;">
                         <div class="inner">
                             <h3>{{ $jumlahSponsor }}</h3>
                             <p>Jumlah Sponsor</p>
@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-6">
-                    <div class="small-box bg-info">
+                    <div class="small-box bg-info" style="background-color: #a86523 !important;">
                         <div class="inner">
                             <h3>{{ $jumlahPromotor }}</h3>
                             <p>Jumlah Promotor</p>

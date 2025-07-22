@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="{{ asset('admin-lte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <link rel="stylesheet" href="{{ asset('admin-lte/plugins/daterangepicker/daterangepicker.css')}}">
   <link rel="stylesheet" href="{{ asset('admin-lte/plugins/summernote/summernote-bs4.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('public/css/login-custom.css') }}">
 
   {{-- This is where you can inject extra CSS from child views --}}
   @stack('styles')
@@ -44,7 +45,8 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="/dashboard" class="nav-link {{ (request()->is('dashboard')) ? 'active' : '' }} ">
+            <a href="/dashboard" class="nav-link {{ (request()->is('dashboard')) ? 'active' : '' }} "
+              style="{{ (request()->is('dashboard')) ? 'background-color: #bf9264 !important; color: #000000 !important;' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -52,7 +54,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/artis" class="nav-link {{ (request()->is('artis')) ? 'active' : '' }} ">
+            <a href="/artis" class="nav-link {{ (request()->is('artis')) ? 'active' : '' }} "
+              style="{{ (request()->is('artis')) ? 'background-color: #bf9264 !important; color: #000000 !important;' : '' }}">
               <i class="nav-icon fas fa-solid fa-star"></i>
               <p>
                 Artis
@@ -60,7 +63,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/konser" class="nav-link {{ (request()->is('konser')) ? 'active' : '' }} ">
+            <a href="/konser" class="nav-link {{ (request()->is('konser')) ? 'active' : '' }} "
+              style="{{ (request()->is('konser')) ? 'background-color: #bf9264 !important; color: #000000 !important;' : '' }}">
               <i class="nav-icon fas fa-solid fa-music"></i>
               <p>
                 Konser
@@ -68,7 +72,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/tiket" class="nav-link {{ (request()->is('tiket')) ? 'active' : '' }} ">
+            <a href="/tiket" class="nav-link {{ (request()->is('tiket')) ? 'active' : '' }} "
+              style="{{ (request()->is('tiket')) ? 'background-color: #bf9264 !important; color: #000000 !important;' : '' }}">
               <i class="nav-icon fas fa-solid fa-money-bill"></i>
               <p>
                 Tiket
@@ -76,7 +81,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/lokasi" class="nav-link {{ (request()->is('lokasi')) ? 'active' : '' }} ">
+            <a href="/lokasi" class="nav-link {{ (request()->is('lokasi')) ? 'active' : '' }} "
+              style="{{ (request()->is('lokasi')) ? 'background-color: #bf9264 !important; color: #000000 !important;' : '' }}">
               <i class="nav-icon fas fa-solid fa-location-arrow"></i>
               <p>
                 Lokasi
@@ -84,7 +90,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/promotor" class="nav-link {{ (request()->is('promotor')) ? 'active' : '' }} ">
+            <a href="/promotor" class="nav-link {{ (request()->is('promotor')) ? 'active' : '' }} "
+              style="{{ (request()->is('promotor')) ? 'background-color: #bf9264 !important; color: #000000 !important;' : '' }}">
               <i class="nav-icon fas fa-solid fa-users"></i>
               <p>
                 Promotor
@@ -92,7 +99,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/sponsor" class="nav-link {{ (request()->is('sponsor')) ? 'active' : '' }} ">
+            <a href="/sponsor" class="nav-link {{ (request()->is('sponsor')) ? 'active' : '' }} "
+              style="{{ (request()->is('sponsor')) ? 'background-color: #bf9264 !important; color: #000000 !important;' : '' }}">
               <i class="nav-icon fas fa-solid fa-handshake"></i>
               <p>
                 Sponsor
@@ -100,7 +108,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/transaksi" class="nav-link {{ (request()->is('transaksi')) ? 'active' : '' }}  ">
+            <a href="/transaksi" class="nav-link {{ (request()->is('transaksi')) ? 'active' : '' }}  "
+              style="{{ (request()->is('transaksi')) ? 'background-color: #bf9264 !important; color: #000000 !important;' : '' }}">
               <i class="nav-icon fas fa-solid fa-cart-plus"></i>
               <p>
                 Transaksi
@@ -120,7 +129,7 @@
       </div>
     </aside>
 
-  <div class="content-wrapper">
+  <div class="content-wrapper" style="background-color: #EAE4D5;">
       @include('alert.pesan')
       @yield('content')
   </div>

@@ -68,7 +68,12 @@
                                     <tr>
                                         <td class="text-center">{{ $i }}</td> {{-- Center align row number --}}
                                         <td>{{ $item->id_tiket }}</td>
-                                        <td>{{ $item->id_konser }}</td>
+                                        <td>
+                                            {{ $item->id_konser }}
+                                            @if($item->konser)
+                                                - {{ $item->konser->nama_konser }}
+                                            @endif
+                                        </td>
                                         <td>{{ $item->jenis_tiket }}</td>
                                         <td>{{ $item->harga }}</td>
                                         <td>{{ $item->stok }}</td>

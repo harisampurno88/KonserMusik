@@ -38,7 +38,7 @@
                                 @forelse ($artisList as $artis)
                                     <option value="{{ $artis->id_artis }}"
                                         {{ old('id_artis', $data->id_artis ?? '') == $artis->id_artis ? 'selected' : '' }}>
-                                        {{ $artis->id_artis }}
+                                        {{ $artis->id_artis }} - {{ $artis->nama_artis }}
                                     </option>
                                 @empty
                                     <option disabled>Data Artis belum tersedia</option>
@@ -54,7 +54,7 @@
                                 @forelse ($lokasiList as $lokasi)
                                     <option value="{{ $lokasi->id_lokasi }}"
                                         {{ old('id_lokasi', $data->id_lokasi ?? '') == $lokasi->id_lokasi ? 'selected' : '' }}>
-                                        {{ $lokasi->id_lokasi }}
+                                        {{ $lokasi->id_lokasi }} - {{ $lokasi->nama_lokasi }}
                                     </option>
                                 @empty
                                     <option disabled>Data Lokasi belum tersedia</option>
@@ -70,7 +70,7 @@
                                 @forelse ($promotorList as $promotor)
                                     <option value="{{ $promotor->id_promotor }}"
                                         {{ old('id_promotor', $data->id_promotor ?? '') == $promotor->id_promotor ? 'selected' : '' }}>
-                                        {{ $promotor->id_promotor }}
+                                        {{ $promotor->id_promotor }} - {{ $promotor->nama_promotor }}
                                     </option>
                                 @empty
                                     <option disabled>Data Promotor belum tersedia</option>

@@ -6,15 +6,19 @@ use App\Models\Konser;
 use App\Models\Tiket;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-// use Illuminate\Support\Str; // Tidak digunakan dalam kode yang diberikan, bisa dihapus jika tidak ada kebutuhan lain
+use Illuminate\Support\Str; // Tidak digunakan dalam kode yang diberikan, bisa dihapus jika tidak ada kebutuhan lain
 
 class TransaksiController extends Controller
 {
     public function create()
     {
-        $konserList = konser::all();
+         $konserList = konser::select('id_konser', 'nama_konser', 'tanggal') // Ambil hanya kolom yang Anda butuhkan
+                            ->whereDate('tanggal', '>=', Carbon::now()->toDateString())
+                            ->orderBy('tanggal', 'asc')
+                            ->get();
         $tiketList = tiket::all(); // Perbaiki case "tiket" menjadi "Tiket"
 
         return view('transaksi.create', compact('konserList', 'tiketList'));

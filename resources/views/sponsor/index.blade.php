@@ -68,7 +68,12 @@
                                         <td class="text-center">{{ $i }}</td> {{-- Center align row number --}}
                                         <td>{{ $item->id_sponsor }}</td>
                                         <td>{{ $item->nama_sponsor }}</td>
-                                        <td>{{ $item->id_konser }}</td>
+                                        <td>
+                                            {{ $item->id_konser }}
+                                            @if($item->konser)
+                                                - {{ $item->konser->nama_konser }}
+                                            @endif
+                                        </td>
                                         <td>{{ $item->deskripsi }}</td>
                                         <td class="d-flex justify-content-center gap-2"> {{-- Center align buttons --}}
                                             <a href='{{ url('sponsor/' . $item->id_sponsor . '/edit') }}'
