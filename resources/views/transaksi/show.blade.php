@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,12 +21,14 @@
             background-color: #1f3c88;
         }
 
-        .navbar-brand, .nav-link {
+        .navbar-brand,
+        .nav-link {
             color: white !important;
             font-weight: 600;
         }
 
-        .navbar-brand:hover, .nav-link:hover {
+        .navbar-brand:hover,
+        .nav-link:hover {
             color: #dbeafe !important;
         }
 
@@ -40,7 +43,7 @@
         .ticket-card {
             background: #fff;
             border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
             padding: 30px;
             max-width: 700px;
             margin: 30px auto;
@@ -71,9 +74,13 @@
         }
 
         @media print {
-            .navbar, .btn, .page-header {
+
+            .navbar,
+            .btn,
+            .page-header {
                 display: none !important;
             }
+
             .ticket-card {
                 box-shadow: none !important;
                 border: 1px solid #ccc;
@@ -87,7 +94,8 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="/user">KonserKu</a>
-            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -124,9 +132,9 @@
         </div>
 
         <div class="mb-3">
-            <span class="label">Status:</span>
+            <span class="label">Status Pemesanan:</span>
             <div class="value">
-                <span class="badge bg-info text-dark">{{ ucfirst($transaksi->status_transaksi) }}</span>
+                <span class="badge bg-info text-dark">Berhasil</span>
             </div>
         </div>
 
@@ -159,6 +167,27 @@
 
         <hr>
 
+        <div class="mb-4">
+            <h5 class="mb-3">Informasi Pembayaran</h5>
+
+            <div class="mb-3">
+                <span class="label">Kode Pembayaran:</span>
+                <div class="value">KONSER-{{ strtoupper(Str::random(6)) }}</div>
+                <!-- Anda juga bisa pakai hardcode contoh: <div class="value">KONSER-98AH32</div> -->
+            </div>
+
+            <div class="mb-3">
+                <span class="label">Status Pembayaran:</span>
+                <div class="value text-danger fw-semibold">Belum Dibayar (Bayar saat tiba di lokasi konser)</div>
+            </div>
+
+            <div class="mb-3 text-center">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=KONSER-{{ strtoupper(Str::random(6)) }}"
+                    alt="Barcode Tiket" />
+                <div class="small text-muted mt-2">Tunjukkan barcode ini saat tiba di lokasi konser</div>
+            </div>
+        </div>
+
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h5>Total Bayar:</h5>
             <h4 class="text-success fw-bold">Rp {{ number_format($transaksi->total_harga, 0, ',', '.') }}</h4>
@@ -177,4 +206,5 @@
     <!-- Bootstrap Script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

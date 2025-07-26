@@ -12,9 +12,9 @@ use App\Http\Controllers\transaksiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('utama');
-// });
+Route::get('/', function () {
+    return view('utama');
+});
 
 Route::get('/login', fn () => view('auth.login')) -> name('login');
 Route::post('/login', [authController::class, 'login']);
