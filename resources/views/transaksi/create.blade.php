@@ -1,111 +1,182 @@
-{{-- Menggunakan layout yang kamu berikan --}}
-@extends('layout.user-main') {{-- Pastikan nama layout ini sesuai dengan file layoutmu, yaitu user_main.blade.php di folder layouts --}}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemesanan Tiket Konser</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #f0f4ff, #e0e7ff);
+            font-family: 'Segoe UI', sans-serif;
+        }
 
-{{-- Judul halaman --}}
-@section('title', 'Pesan Tiket Konser')
+        nav {
+            background-color: #1f3c88;
+        }
 
-{{-- Bagian konten yang akan disisipkan ke @yield('content') di layout --}}
-@section('content')
-<div class="col-lg-8 align-self-baseline">
-    {{-- Form Pemesanan --}}
-    <div class="card bg-white text-dark shadow-lg border-0 rounded-lg mt-5">
-        <div class="card-body p-4 p-lg-5">
+        .navbar-brand, .nav-link {
+            color: white !important;
+            font-weight: 600;
+        }
 
-            <form action="{{ route('transaksi.store') }}" method="POST">
-                @csrf {{-- Token CSRF untuk keamanan form Laravel --}}
+        .navbar-brand:hover, .nav-link:hover {
+            color: #cbd5ff !important;
+        }
 
-                {{-- Input untuk Pilih Konser --}}
-                <div class="mb-4">
-                    <label for="id_konser" class="form-label text-dark fw-bold">Pilih Konser:</label>
-                    <select class="form-control form-control-lg" id="id_konser" name="id_konser" required>
-                        <option value="">-- Pilih Konser --</option>
-                        @foreach($konserList as $konser)
-                            <option value="{{ $konser->id_konser }}" {{ old('id_konser') == $konser->id_konser ? 'selected' : '' }}>
-                                {{ $konser->nama_konser }} - {{ \Carbon\Carbon::parse($konser->tanggal)->translatedFormat('d F Y')  }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('id_konser')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                    @enderror
-                </div>
+        .card-form {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 600px;
+            margin: 100px auto;
+        }
 
-                {{-- Input untuk Pilih Jenis Tiket (Dropdown Kedua - Akan diisi via JS) --}}
-                <div class="mb-4">
-                    <label for="id_tiket" class="form-label text-dark fw-bold">Pilih Jenis Tiket:</label>
-                    <select class="form-control form-control-lg" id="id_tiket" name="id_tiket" required disabled>
-                        <option value="">-- Pilih Konser Dulu --</option>
-                    </select>
-                    @error('id_tiket')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                    @enderror
-                </div>
+        h2 {
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #1f3c88;
+        }
 
-                {{-- Input Jumlah Tiket --}}
-                <div class="mb-4">
-                    <label for="jumlah_tiket" class="form-label text-dark fw-bold">Jumlah Tiket:</label>
-                    <input type="number" class="form-control form-control-lg" id="jumlah_tiket" name="jumlah_tiket" min="1" value="{{ old('jumlah_tiket', 1) }}" required>
-                    @error('jumlah_tiket')
-                        <div class="text-danger mt-1">{{ $message }}</div>
-                    @enderror
-                </div>
+        label {
+            font-weight: 600;
+            color: #333;
+        }
 
-                {{-- Tombol Submit --}}
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-primary btn-xl">Pesan Sekarang</button>
-                </div>
-            </form>
+        select, input {
+            padding: 12px;
+            border-radius: 10px;
+        }
+
+        button {
+            background-color: #1f3c88;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            width: 100%;
+            transition: 0.3s;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #162d6a;
+        }
+
+        small {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/user">Konser Musik</a>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon text-white"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://wa.me/085360053233">Kontak</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
+    </nav>
+
+    <!-- FORMULIR -->
+    <div class="card-form" id="form-pesan">
+        <h2>Pemesanan Tiket Konser</h2>
+
+        <form action="{{ route('transaksi.store') }}" method="POST">
+            @csrf
+
+            <div class="mb-3">
+                <label for="id_konser">Pilih Konser:</label>
+                <select name="id_konser" id="id_konser" class="form-control" required>
+                    <option value="">-- Pilih Konser --</option>
+                    @foreach($konserList as $konser)
+                        <option value="{{ $konser->id_konser }}" {{ old('id_konser') == $konser->id_konser ? 'selected' : '' }}>
+                            {{ $konser->nama_konser }} - {{ \Carbon\Carbon::parse($konser->tanggal)->translatedFormat('d F Y') }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('id_konser')
+                    <small>{{ $message }}</small>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label for="id_tiket">Pilih Jenis Tiket:</label>
+                <select name="id_tiket" id="id_tiket" class="form-control" required disabled>
+                    <option value="">-- Pilih Konser Dulu --</option>
+                </select>
+                @error('id_tiket')
+                    <small>{{ $message }}</small>
+                @enderror
+            </div>
+
+            <div class="mb-4">
+                <label for="jumlah_tiket">Jumlah Tiket:</label>
+                <input type="number" name="jumlah_tiket" id="jumlah_tiket" class="form-control" value="{{ old('jumlah_tiket', 1) }}" min="1" required>
+                @error('jumlah_tiket')
+                    <small>{{ $message }}</small>
+                @enderror
+            </div>
+
+            <button type="submit">Pesan Sekarang</button>
+        </form>
     </div>
-</div>
 
-{{-- Skrip JavaScript untuk Dropdown Dinamis Tiket (berdasarkan pilihan Konser) --}}
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const konserSelect = document.getElementById('id_konser');
-        const tiketSelect = document.getElementById('id_tiket');
+    <!-- FOOTER/KONTAK -->
+    <footer class="text-center py-4 mt-5" id="kontak">
+        <p class="text-muted">© 2025 KonserKu. Hubungi kami: konserku@email.com</p>
+    </footer>
 
-        // Mengambil semua data tiket yang dikirim dari controller sebagai JSON
-        // Ini akan digunakan untuk memfilter tiket berdasarkan konser yang dipilih.
-        // Pastikan model Tiket memiliki kolom 'id_konser' dan 'price'.
-        const allTickets = @json($tiketList); 
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const konserSelect = document.getElementById('id_konser');
+            const tiketSelect = document.getElementById('id_tiket');
 
-        // Fungsi untuk memuat tiket berdasarkan konser yang dipilih
-        function loadTickets(konserId) {
-            tiketSelect.innerHTML = '<option value="">-- Memuat Tiket... --</option>';
-            tiketSelect.disabled = true; // Nonaktifkan dropdown tiket saat memuat
+            const allTickets = @json($tiketList);
 
-            // Filter tiket yang id_konser-nya cocok dengan konserId yang dipilih
-            const filteredTickets = allTickets.filter(ticket => ticket.id_konser == konserId);
+            function loadTickets(konserId) {
+                tiketSelect.innerHTML = '<option value="">-- Memuat Tiket... --</option>';
+                tiketSelect.disabled = true;
 
-            tiketSelect.innerHTML = '<option value="">-- Pilih Jenis Tiket --</option>';
-            if (filteredTickets.length > 0) {
-                filteredTickets.forEach(ticket => {
-                    const option = document.createElement('option');
-                    option.value = ticket.id_tiket;
-                    // Menampilkan nama jenis tiket dan harganya
-                    option.textContent = `${ticket.jenis_tiket} (Rp${new Intl.NumberFormat('id-ID').format(ticket.harga)})`;
-                    // Untuk mempertahankan pilihan jika validasi gagal, cocokkan dengan old('id_tiket')
-                    option.selected = (ticket.id == "{{ old('id_tiket') }}");
-                    tiketSelect.appendChild(option);
-                });
-                tiketSelect.disabled = false; // Aktifkan kembali dropdown tiket
-            } else {
-                tiketSelect.innerHTML = '<option value="">-- Tidak ada tiket tersedia untuk konser ini --</option>';
+                const filteredTickets = allTickets.filter(ticket => ticket.id_konser == konserId);
+
+                tiketSelect.innerHTML = '<option value="">-- Pilih Jenis Tiket --</option>';
+                if (filteredTickets.length > 0) {
+                    filteredTickets.forEach(ticket => {
+                        const option = document.createElement('option');
+                        option.value = ticket.id_tiket;
+                        option.textContent = `${ticket.jenis_tiket} (Rp${new Intl.NumberFormat('id-ID').format(ticket.harga)})`;
+                        tiketSelect.appendChild(option);
+                    });
+                    tiketSelect.disabled = false;
+                } else {
+                    tiketSelect.innerHTML = '<option value="">-- Tidak ada tiket tersedia --</option>';
+                }
             }
-        }
 
-        // Event listener untuk perubahan pilihan konser
-        konserSelect.addEventListener('change', function() {
-            loadTickets(this.value);
+            konserSelect.addEventListener('change', function() {
+                loadTickets(this.value);
+            });
+
+            if (konserSelect.value) {
+                loadTickets(konserSelect.value);
+            }
         });
-
-        // Logika untuk mengisi kembali dropdown tiket jika ada nilai old (misalnya setelah validasi gagal)
-        if (konserSelect.value) {
-            loadTickets(konserSelect.value);
-        }
-    });
-</script>
-@endpush
-@endsection
+    </script>
+</body>
+</html>
